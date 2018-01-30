@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Prototype</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8">
+<script>window.addEventListener("touchmove", function(e) {e.preventDefault()})</script>
+<style>body,html{width:100%;height:100%;margin:0;border:0;overflow:hidden;display:block;background-color:#fff;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none}</style>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="prototype.js"></script>
+<script>function init(){canvas=document.getElementById("canvas"),anim_container=document.getElementById("animation_container"),dom_overlay_container=document.getElementById("dom_overlay_container");var e=AdobeAn.getComposition("BFB9733FDB1C4D3EA03B1457C7F3DE12"),t=e.getLibrary(),a=new createjs.LoadQueue(!1);a.addEventListener("fileload",function(t){handleFileLoad(t,e)}),a.addEventListener("complete",function(t){handleComplete(t,e)});var t=e.getLibrary();a.loadManifest(t.properties.manifest)}function handleFileLoad(e,t){var a=t.getImages();e&&"image"==e.item.type&&(a[e.item.id]=e.result)}function handleComplete(e,t){function a(e,t,a,i){function o(){var o=n.properties.width,c=n.properties.height,m=window.innerWidth,l=window.innerHeight,g=window.devicePixelRatio||1,h=m/o,p=l/c,v=1;e&&("width"==t&&r==m||"height"==t&&s==l?v=d:a?1==i?v=Math.min(h,p):2==i&&(v=Math.max(h,p)):(o>m||c>l)&&(v=Math.min(h,p))),canvas.width=o*g*v,canvas.height=c*g*v,canvas.style.width=dom_overlay_container.style.width=anim_container.style.width=o*v+"px",canvas.style.height=anim_container.style.height=dom_overlay_container.style.height=c*v+"px",stage.scaleX=g*v,stage.scaleY=g*v,r=m,s=l,d=v,stage.tickOnUpdate=!1,stage.update(),stage.tickOnUpdate=!0}var r,s,d=1;window.addEventListener("resize",o),o()}var n=t.getLibrary(),o=t.getSpriteSheet(),r=e.target,s=n.ssMetadata;for(i=0;i<s.length;i++)o[s[i].name]=new createjs.SpriteSheet({images:[r.getResult(s[i].name)],frames:s[i].frames});exportRoot=new n.prototypenew,stage=new n.Stage(canvas),stage.enableMouseOver(),fnStartAnimation=function(){stage.addChild(exportRoot),createjs.Ticker.setFPS(n.properties.fps),createjs.Ticker.addEventListener("tick",stage)},a(!0,"both",!0,1),AdobeAn.compositionLoaded(n.properties.id),fnStartAnimation()}var canvas,stage,exportRoot,anim_container,dom_overlay_container,fnStartAnimation;
+</script>
+</head>
+<body onload="init();" style="margin:0px;">
+<center>
+<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1020px; height:2400px">
+<canvas id="canvas" width="1020" height="2400" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1020px; height:2400px; position: absolute; left: 0px; top: 0px; display: block;">
+</div>
+</div>
+</center>
+</body>
+</html>
